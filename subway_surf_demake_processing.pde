@@ -15,7 +15,7 @@ void setup() {
 }
 
 void draw() {
-  //cenario();
+  cenario();
   for (int j =0; j < 7; j++) {
     if (linhas[j] < height) {
       linhas[j]+=5;
@@ -24,7 +24,7 @@ void draw() {
     }
   }
   
-  //personagem.moveMEF();
+  personagem.moveMEF();
 }
 
 void cenario () {
