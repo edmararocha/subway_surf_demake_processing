@@ -9,8 +9,8 @@ class Trem {
   }
 
   void desenha() {
-    fill(100);
-    rect(this.x, this.y, 50, this.h);
+    //fill(100);
+    //rect(this.x, this.y, 50, this.h);
   }
 
   void moveTrem () {
