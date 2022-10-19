@@ -1,16 +1,25 @@
 float linhas[] = new float[7];
 float pos1;
 Personagem personagem;
+Trem trem;
+Trem trem2;
+Trem trem3;
 
 void setup() {
-  size(400, 600);
+  //size(400, 600);
 
   personagem = new Personagem();
+  trem = new Trem();
+  trem.x = 0.33*width/3;
+  trem2 = new Trem();
+  trem2.x = width/2-25;
+  trem3 = new Trem();
+  trem3.x = 2.33*width/3;
 
   for (int i = 0; i < 7; i++) {
     linhas[i] = i*85;
   }
-  
+
   pos1 = linhas[0];
 }
 
@@ -23,8 +32,11 @@ void draw() {
       linhas[j] = pos1;
     }
   }
-  
+
   personagem.moveMEF();
+  trem.moveTrem();
+  trem2.moveTrem();
+  trem3.moveTrem();
 }
 
 void cenario () {
