@@ -1,50 +1,60 @@
 class Personagem {
-  final int CENTER = 0;
-  final int LEFT = 1;
-  final int RIGHT = 2;
-  
-  final int pernaE = 0;
-  final int pernaD = 1;
+  final int CENTRO = 0;
+  final int ESQUERDA = 1;
+  final int DIREITA = 2;
+
+  float posX;
+
+  //final int pernaE = 0;
+  //final int pernaD = 1;
 
   int state;
   int statePerna;
-  
+
   Personagem() {
-    state = CENTER;
-    
+    state = CENTRO;
+    posX = width/2;
   }
-  
-  void desenha(float x,float  y) {
+
+  void desenha() {
     fill(255);
-    circle(x, y, 30);
+    circle(posX, 2.5 * height / 3, 30);
   }
 
   void checkMoves() {
-    if (this.state == CENTER) {
-      this.desenha(width / 2, 2.5 * height / 3);
-    }
     switch (this.state) {
-      case LEFT:
-        this.desenha(0.5*width / 3, 2.5 * height / 3);
-        break;
-      case RIGHT:
-        this.desenha(2.5 * width / 3, 2.5 * height / 3);
-        break;
+    case CENTRO:
+      this.posX = width/2;
+      break;
+    case ESQUERDA:
+      this.posX = 0.5*width/3;
+      break;
+    case DIREITA:
+      this.posX = 2.5*width/3;
+      break;
     }
   }
 
   void moveMEF() {
-    if (keyPressed) {
-      if (key == 'a' || key == 'A') {
-        this.state = LEFT;
+    //println(tempCentro);
+    if (this.state == CENTRO) {
+      if (keyCode == LEFT) {
+        this.state = ESQUERDA;
       }
-
-      if (key == 'd' || key == 'D') {
-        this.state = RIGHT;
+      if (keyCode == RIGHT) {
+        this.state = DIREITA;
       }
+    }
+    
+    if (this.state == ESQUERDA) {
+      if (keyCode == RIGHT) {
+        this.state = CENTRO;
+      }
+    }
 
-      if (key == 's' || key == 'S') {
-        this.state = CENTER;
+    if (this.state == DIREITA) {
+      if (keyCode == LEFT) {
+        this.state = CENTRO;
       }
     }
     this.checkMoves();

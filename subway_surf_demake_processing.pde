@@ -1,12 +1,11 @@
 float linhas[] = new float[7];
-float pos1;
 Personagem personagem;
 Trem trem;
 Trem trem2;
 Trem trem3;
 
 void setup() {
-  //size(400, 600);
+  size(400, 600);
 
   personagem = new Personagem();
   trem = new Trem();
@@ -19,8 +18,6 @@ void setup() {
   for (int i = 0; i < 7; i++) {
     linhas[i] = i*85;
   }
-
-  pos1 = linhas[0];
 }
 
 void draw() {
@@ -29,14 +26,23 @@ void draw() {
     if (linhas[j] < height) {
       linhas[j]+=5;
     } else {
-      linhas[j] = pos1;
+      linhas[j] = 0;
     }
   }
+  
+  //personagem.desenha();
+  
+  trem.moveTrem(trem2, trem3);
+  trem2.moveTrem(trem, trem3);
+  trem3.moveTrem(trem, trem2);
+  
+  print(trem.x + " - ");
+  print(trem2.x + " - ");
+  println(trem3.x);
+}
 
+void keyPressed () {
   personagem.moveMEF();
-  trem.moveTrem();
-  trem2.moveTrem();
-  trem3.moveTrem();
 }
 
 void cenario () {
@@ -52,11 +58,7 @@ void cenario () {
 void desenhaLinhas (float x) {
   noStroke();
   fill(180);
-  rect(x, linhas[0], 5, height/12);
-  rect(x, linhas[1], 5, height/12);
-  rect(x, linhas[2], 5, height/12);
-  rect(x, linhas[3], 5, height/12);
-  rect(x, linhas[4], 5, height/12);
-  rect(x, linhas[5], 5, height/12);
-  rect(x, linhas[6], 5, height/12);
+  for (int i = 0; i < linhas.length; i++) {
+    rect(x, linhas[i], 5, height/12);
+  }
 }
